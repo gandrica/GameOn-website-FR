@@ -13,6 +13,8 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 const closeModalBtn = document.querySelector(".close");
+const closeMessageBtn = document.querySelector(".message-close-btn");
+const messageBtn = document.querySelector(".message-btn");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -41,6 +43,7 @@ const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const tournoi = document.getElementById("tournoi");
 const checkbox1 = document.querySelector("#checkbox1");
+const message = document.getElementById("message");
 
 const checkName = function (name) {
   const nameRegex = /^[a-zA-Z]{2,30}$/;
@@ -106,7 +109,18 @@ const createDivError = function (element, text) {
 const formValidation = function (element) {
   if (element.id === "tournoi") {
     const divErrorElement = tournoi.querySelector(`.error`);
-    if (divErrorElement) divErrorElement.style.display = "none";
+    if (divErrorElement) {
+      divErrorElement.style.display = "none";
+      element.style.border = "none";
+    }
+    return true;
+  } else if (element.id === "checkbox1") {
+    const divErrorParent = element.parentNode.querySelector(`.error`);
+    const elementSibling = document.querySelector(`#${element.id}+label`);
+    if (divErrorParent) {
+      divErrorParent.style.display = "none";
+      elementSibling.style.border = "none";
+    }
     return true;
   } else {
     const divErrorParent = element.parentNode.querySelector(`.error`);
@@ -118,9 +132,11 @@ const formValidation = function (element) {
 const formValidationError = function (element) {
   const elementID = element.id;
   const parentElement = element.parentNode;
+  const elementSibling = document.querySelector(`#${elementID}+label`);
 
   let divError = parentElement.querySelector(".error");
   let divErrorElement = element.querySelector(".error");
+  element.style.border = "1px solid red";
 
   if (divError) {
     divError.style.display = "inline-block";
@@ -153,6 +169,7 @@ const formValidationError = function (element) {
         parentElement,
         "Vous devez vérifier que vous acceptez les termes et conditions."
       );
+      elementSibling.style.border = "1px solid red";
     }
   }
   return false;
@@ -176,18 +193,25 @@ const verifyInputs = function () {
     checkName(lastName) &&
     checkName(firstName)
   ) {
+    console.log(true);
     return true;
   } else {
+    console.log(false);
     return false;
   }
 };
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(verifyInputs());
 
   if (verifyInputs()) {
-    alert("Merci ! Votre réservation a été reçue.");
     modalbg.style.display = "none";
+    message.style.display = "block";
   }
 });
+
+closeMessageBtn.addEventListener(
+  "click",
+  () => (message.style.display = "none")
+);
+messageBtn.addEventListener("click", () => (message.style.display = "none"));
