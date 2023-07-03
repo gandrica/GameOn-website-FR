@@ -31,6 +31,7 @@ img {
 	padding-right: 1rem;
 }
 
+/* Navigation */
 .topnav {
 	margin: 3.5% 0 3.5% 4.5%;
 	display: grid;
@@ -210,6 +211,7 @@ img {
 	}
 }
 
+/* Main section */
 main {
 	font-size: 130%;
 	font-weight: bolder;
@@ -323,12 +325,13 @@ main {
 	}
 }
 
+/* Message section */
 #message {
 	z-index: 2;
 }
 
 #message .content {
-	height: 60vh;
+	height: 89vh;
 }
 
 #message .message-body {
@@ -417,12 +420,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
 	border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+
 .checkbox-label,
 .checkbox2-label {
 	position: relative;
@@ -642,7 +640,7 @@ input[data-error]::after {
 	white-space: nowrap;
 }
 .hero-text {
-	width: 146%;
+	width: 136%;
 	font-weight: normal;
 	margin-top: 57px;
 	padding: 0;
@@ -731,7 +729,7 @@ input[data-error]::after {
 		padding-top: 0;
 	}
 	.hero-text {
-		width: unset;
+		width: 92%;
 		font-size: 1.5rem;
 		margin-top: 20px;
 	}

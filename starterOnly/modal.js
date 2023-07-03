@@ -22,6 +22,7 @@ const linkNavigation = document.querySelectorAll(".topnav a");
 const firstLink = document.querySelector(".topnav a:first-of-type");
 const linkNavigationResponsive = document.querySelector(".topnav a.icon");
 
+// Navigation class toggle
 function editNav() {
 	var x = document.getElementById("myTopnav");
 	if (x.className === "topnav modal-open responsive") {
@@ -57,6 +58,7 @@ closeModalBtn.addEventListener("click", closeBtn);
 //#2 -Implémenter entrées du formulaire
 //Validate form data function
 
+// Check name function
 const checkName = function (name) {
 	const nameRegex = /^[a-zA-Z]{2,30}$/;
 	const isValid = nameRegex.test(name.value + "")
@@ -66,6 +68,7 @@ const checkName = function (name) {
 	else return false;
 };
 
+// Check email function
 const checkEmail = function (email) {
 	const emailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -76,6 +79,7 @@ const checkEmail = function (email) {
 	else return false;
 };
 
+// Check date function
 const checkDate = function (dateInput) {
 	const isValid = !(dateInput.value === null || dateInput.value === "")
 		? formValidation(birthdate)
@@ -83,6 +87,7 @@ const checkDate = function (dateInput) {
 	return isValid;
 };
 
+// Check number function
 const checkNumber = function (number) {
 	const nameRegex = /^-?\d+$/;
 	const isValid =
@@ -92,6 +97,7 @@ const checkNumber = function (number) {
 	return isValid;
 };
 
+// Checked radio input function
 const checkTournoi = function (element) {
 	const isValid = element.querySelector('input[type="radio"]:checked')
 		? formValidation(element)
@@ -99,6 +105,7 @@ const checkTournoi = function (element) {
 	return isValid;
 };
 
+// Checked checkbox input function
 const checkCheckbox = function (element) {
 	const isValid = document.querySelector("#checkbox1:checked")
 		? formValidation(element)
@@ -106,6 +113,7 @@ const checkCheckbox = function (element) {
 	return isValid;
 };
 
+// Create error div tag function
 const createDivError = function (element, text) {
 	const divError = document.createElement("div");
 	divError.style.color = "red";
@@ -118,6 +126,7 @@ const createDivError = function (element, text) {
 	element.appendChild(divError);
 };
 
+//Input validation function
 const formValidation = function (element) {
 	element.style.border = "none";
 	if (element.id === "tournoi") {
@@ -141,6 +150,7 @@ const formValidation = function (element) {
 	}
 };
 
+//Input non-validated function
 const formValidationError = function (element) {
 	const elementID = element.id;
 	const parentElement = element.parentNode;
@@ -189,6 +199,7 @@ const formValidationError = function (element) {
 	return false;
 };
 
+//Input verification function
 const verifyInputs = function () {
 	checkTournoi(tournoi);
 	checkCheckbox(checkbox1);
@@ -215,6 +226,9 @@ const verifyInputs = function () {
 	}
 };
 
+//Events Listeners
+
+//Submit button event listener
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 
@@ -225,6 +239,7 @@ form.addEventListener("submit", (e) => {
 	}
 });
 
+//Modal close buttons event listeners
 closeMessageBtn.addEventListener("click", () => {
 	message.style.display = "none";
 	topnav.classList.remove("modal-open");
@@ -234,6 +249,7 @@ messageBtn.addEventListener("click", () => {
 	topnav.classList.remove("modal-open");
 });
 
+//Navigation links activation event listener
 linkNavigation.forEach((link) => {
 	link.addEventListener("click", () => {
 		const activeClassLink = document.querySelector(".topnav a.active");
